@@ -22,7 +22,6 @@ export const NameUser = styled.p`
   line-height: 112.7%;
   letter-spacing: -0.02em;
   color: #737c8e;
-  left: 573px;
   height: 19px;
 `;
 
@@ -31,7 +30,6 @@ export const AttendanceUser = styled.p`
   font-weight: normal;
   font-style: normal;
   color: #737c8e;
-  left: 573px;
   height: 19px;
   line-height: 112.7%;
   letter-spacing: -0.02em;
@@ -43,7 +41,6 @@ export const AverageUser = styled.div`
   align-items: center;
   width: 34px;
   height: 34px;
-  left: 515px;
   border-radius: 50px;
   background-color: ${({ theme, average }) => {
     if (average > 4) return theme.colors.success;
