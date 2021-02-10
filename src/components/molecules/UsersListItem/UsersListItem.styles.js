@@ -52,3 +52,10 @@ export const AverageUser = styled.div`
     if (average < 2) return theme.colors.lightGrey;
   }};
 `;
+
+export const DivContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 24px;
+  margin-right: 12px;
+`;
