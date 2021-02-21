@@ -14,7 +14,12 @@ const UsersList = () => {
     }, 2000);
   }, []);
 
-  const UserList = user.map((userData, index) => <UsersListItem index={index} key={userData.name} userData={userData} />);
+  const deleteUser = (name) => {
+    const newUserList = user.filter((elem) => elem.name !== name);
+    setUser(newUserList);
+  };
+
+  const UserList = user.map((userData) => <UsersListItem deleteUser={deleteUser} key={userData.name} userData={userData} />);
   return (
     <Wrapper>
       <StyledList>{isLoading ? <h1>is Loading...</h1> : UserList}</StyledList>
