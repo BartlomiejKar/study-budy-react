@@ -4,6 +4,7 @@ import Button from 'components/atoms/Button/Button';
 import { Wrapper, NameUser, AttendanceUser, AverageUser, DivContainer } from './UsersListItem.styles';
 
 const UsersListItem = ({ deleteUser, userData: { average, name, attendance = '0%' } }) => (
+
   <Wrapper>
     <AverageUser average={average}>{average}</AverageUser>
     <DivContainer>
