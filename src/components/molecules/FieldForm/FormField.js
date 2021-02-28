@@ -14,11 +14,11 @@ ${Label} {
 }
 `;
 
-const FormField = ({ onChange, label, type = "text", name, id, ...props }) => {
+const FormField = ({ onChange, label, type = "text", name, id, value, ...props }) => {
     return (
         <Container>
             <Label htmlFor={id}>{label}</Label>
-            <Input name={name} id={id} type={type} onChange={onChange} />
+            <Input name={name} id={id} type={type} onChange={onChange} value={value} />
         </Container>
     );
 };
