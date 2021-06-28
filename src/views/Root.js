@@ -5,7 +5,15 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'assets/styles/GlobalStyle';
 import { theme } from 'assets/styles/theme';
 import { Wrapper } from './Root.styles';
+import Navigation from "../components/molecules/Navigation/Navigation"
 import Form from "components/organisms/Form/Form"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 const InitialForm = {
   name: "",
@@ -53,15 +61,31 @@ const Root = () => {
 
 
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Wrapper>
-        <Form submitAddNewUser={submitAddNewUser} handleChangeInput={handleChangeInput} formValues={formValues} />
-      </Wrapper>
-      <Wrapper>
-        <UsersList user={user} deleteUser={deleteUser} isLoading={isLoading} />
-      </Wrapper>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Navigation />
+        <Wrapper>
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/add-user">Add users</Link>
+          </nav>
+        </Wrapper>
+        <Switch>
+          <Route path="/" exact>
+            <Wrapper>
+              <UsersList user={user} deleteUser={deleteUser} isLoading={isLoading} />
+            </Wrapper>
+          </Route>
+          <Route path="/add-user" >
+            <Wrapper>
+              <Form submitAddNewUser={submitAddNewUser} handleChangeInput={handleChangeInput} formValues={formValues} />
+            </Wrapper>
+          </Route>
+
+        </Switch>
+      </ThemeProvider>
+    </Router>
   )
 };
 
