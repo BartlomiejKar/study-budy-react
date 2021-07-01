@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 import { StyledList, StyledTitle, Wrapper } from './UsersList.styles';
+import { UsersProviders } from 'Providers/UsersProvider';
 
 
 
-const UsersList = ({ user, deleteUser, isLoading }) => {
-  const ListOfUsers = user.map((userData) => {
+const UsersList = () => {
+  const { users, isLoading } = useContext(UsersProviders)
+
+  const ListOfUsers = users.map((userData) => {
     return (
-      <UsersListItem deleteUser={deleteUser} key={userData.name} userData={userData} />
+      <UsersListItem key={userData.name} userData={userData} />
     )
   });
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { Label } from "components/atoms/Label/Label";
-import { Input } from "components/atoms/Input/Input";
+import { Label } from "components/molecules/FieldForm/Label/Label.styles.js";
+import { Input } from "components/molecules/FieldForm/Input/Input.styles.js";
 
 
 const Container = styled.div`
