@@ -3,6 +3,7 @@ import { Wrapper, StyledTitle } from "components/organisms/UsersList/UsersList.s
 import FormField from "components/molecules/FieldForm/FormField/";
 import { Button } from "components/atoms/Button/Button.styles.js";
 import { UsersProviders } from 'Providers/UsersProvider';
+import useReducerForm from './useReducerForm';
 
 const InitialForm = {
     name: "",
@@ -12,27 +13,22 @@ const InitialForm = {
 
 const Form = () => {
     const { submitAddNewUser } = useContext(UsersProviders)
-    const [formValues, setFormValues] = useState(InitialForm)
+    const { handleInputChange, clearValue, formValue } = useReducerForm(InitialForm)
 
-    const handleChangeInput = (e) => {
-        setFormValues({
-            ...formValues,
-            [e.target.name]: e.target.value
-        })
-    }
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        submitAddNewUser(formValues);
-        setFormValues(InitialForm);
+        submitAddNewUser(formValue);
+        clearValue()
     }
 
     return (
         <Wrapper as="form" onSubmit={handleSubmit}>
             <StyledTitle>Add new student</StyledTitle>
-            <FormField label="Name" name="name" id="name" value={formValues.name} onChange={handleChangeInput} />
-            <FormField label="Attendance" name="attendance" id="attendance" value={formValues.attendance} onChange={handleChangeInput} />
-            <FormField label="Average" name="average" id="average" value={formValues.average} onChange={handleChangeInput} />
+            <FormField label="Name" name="name" id="name" value={formValue.name} onChange={handleInputChange} />
+            <FormField label="Attendance" name="attendance" id="attendance" value={formValue.attendance} onChange={handleInputChange} />
+            <FormField label="Average" name="average" id="average" value={formValue.average} onChange={handleInputChange} />
             <Button type="submit">Add</Button>
         </Wrapper>
     )
