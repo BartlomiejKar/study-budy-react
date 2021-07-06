@@ -1,6 +1,8 @@
 import React from 'react';
-import { NavigationWrapper } from "./Navigation.styles";
+import { NavigationWrapper, UserListWrapper } from "./Navigation.styles";
 import Navigation from './Navigation';
+import SearchBar from './SearchBar';
+import NewsSection from './NewsSection';
 
 
 const MainTemplate = ({ children }) => {
@@ -8,7 +10,11 @@ const MainTemplate = ({ children }) => {
     return (
         <NavigationWrapper>
             <Navigation />
-            {children}
+            <UserListWrapper>
+                {children}
+            </UserListWrapper>
+            <SearchBar />
+            <NewsSection />
         </NavigationWrapper>
     )
 }

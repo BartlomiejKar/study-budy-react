@@ -1,16 +1,22 @@
 import styled from "styled-components";
 import { NavLink } from 'react-router-dom';
 
+export const UserListWrapper = styled.div`
+grid-column: 2/3;
+grid-row: 2/3;
+`
 
 export const NavigationWrapper = styled.div`
-display: grid;
 width: 100%;
-height: 100vh;
-overflow-x: scroll;
-margin: 0;
-padding: 0;
-grid-template-columns: 150px 1fr;
-background-color: #E5E5E5;
+  height: 100vh;
+  overflow-x: scroll;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-rows: 90px 1fr;
+  grid-template-columns: 150px 1fr 0.75fr;
+  background-color: ${({ theme }) => theme.colors.lightGrey};
+  overflow-y: hidden;
 `
 
 export const Logo = styled.div`

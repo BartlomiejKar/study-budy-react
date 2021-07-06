@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Wrapper, StyledTitle } from "components/organisms/UsersList/UsersList.styles";
 import FormField from "components/molecules/FieldForm/FormField/";
 import { Button } from "components/atoms/Button/Button.styles.js";

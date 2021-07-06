@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   border-right: 1px solid ${({ theme }) => theme.colors.darkPurple};
   justify-content: flex-start;
   padding: 30px 0;
+ 
 `;
 
 export const RootWrapper = styled.div`

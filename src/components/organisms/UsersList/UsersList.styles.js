@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   border-radius: 25px;
   box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
   margin: 20px;
+
 `;
 
 export const StyledList = styled.ul`
