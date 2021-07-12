@@ -1,52 +1,55 @@
-import React from 'react';
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import { NewsWrapper, ArticleWrapper, NewsSectionHeader, ContentWrapper } from "./NewSection.styles"
 import { Button } from 'components/atoms/Button/Button.styles';
+import axios from 'axios';
 
-export const NewsWrapper = styled.div`
-grid-row: 1 / 3;
-  grid-column: 3 / 3;
-  border-left: 1px solid ${({ theme }) => theme.colors.darkPurple};
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 50px;
-  overflow-y: scroll;
+const query = `
+{
+  allArticles {
+    id
+    title
+content
+category
+image {
+  url
+}
+  }
+}
 `
-export const ArticleWrapper = styled.div`
-  margin: 30px 0;
-  width: 100%;
-  max-width: unset;
-  border-radius: 12px;
-  color: ${({ theme }) => theme.colors.darkGrey};
-  p {
-    line-height: 1.6;
-  }
-`;
-export const ContentWrapper = styled.div`
-  display: flex;
-  img {
-    margin-left: 35px;
-    max-width: 200px;
-    object-fit: cover;
-  }
-`;
-export const NewsSectionHeader = styled.h2`
-  margin-right: auto;
-  color: ${({ theme }) => theme.colors.darkGrey};
-`;
+const API_TOKEN = "89c7852c5dc1b325b5c752a5613b49"
 const NewsSection = () => {
-    return (
-        <NewsWrapper>
-            <ArticleWrapper>
-                <NewsSectionHeader>University news feed</NewsSectionHeader>
-                <ContentWrapper>
-                    <p>news4</p>
-                </ContentWrapper>
-                <Button isBig>Read more</Button>
-            </ArticleWrapper>
-        </NewsWrapper>
+  const [articles, setArticles] = useState([])
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    axios.post('https://graphql.datocms.com/',
+      {
+        query
+      },
+      {
+        headers: {
+          authorization: `Bearer ${API_TOKEN}`
+        }
+      }
     )
+      .then(({ data: { data } }) => setArticles(data.allArticles))
+      .catch(err => setError(`Sorry, we couldn't load articles for you`));
+  }, []);
+  return (
+    <NewsWrapper>
+      {articles.length > 0 ? articles.map(({ id, title, content, category, image }) => {
+        return (
+          <ArticleWrapper key={id}>
+            <NewsSectionHeader>{title}</NewsSectionHeader>
+            <ContentWrapper>
+              <p>{content}</p>
+            </ContentWrapper>
+            <Button isBig>Read more</Button>
+          </ArticleWrapper>
+        )
+      }) : <NewsSectionHeader>{error ? error : 'Loading...'}</NewsSectionHeader>}
+    </NewsWrapper>
+  )
 }
 
 export default NewsSection
