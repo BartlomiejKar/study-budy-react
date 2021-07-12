@@ -3,6 +3,7 @@ import { NewsWrapper, ArticleWrapper, NewsSectionHeader, ContentWrapper } from "
 import { Button } from 'components/atoms/Button/Button.styles';
 import axios from 'axios';
 
+
 const query = `
 {
   allArticles {
@@ -16,7 +17,6 @@ image {
   }
 }
 `
-const API_TOKEN = "89c7852c5dc1b325b5c752a5613b49"
 const NewsSection = () => {
   const [articles, setArticles] = useState([])
   const [error, setError] = useState(null)
@@ -28,7 +28,7 @@ const NewsSection = () => {
       },
       {
         headers: {
-          authorization: `Bearer ${API_TOKEN}`
+          authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`
         }
       }
     )
@@ -40,9 +40,13 @@ const NewsSection = () => {
       {articles.length > 0 ? articles.map(({ id, title, content, category, image }) => {
         return (
           <ArticleWrapper key={id}>
-            <NewsSectionHeader>{title}</NewsSectionHeader>
+            <NewsSectionHeader>
+              {title}
+              <p>{category}</p>
+            </NewsSectionHeader>
             <ContentWrapper>
               <p>{content}</p>
+              {image ? <img src={image.url} alt="article" /> : null}
             </ContentWrapper>
             <Button isBig>Read more</Button>
           </ArticleWrapper>
