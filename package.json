@@ -43,6 +43,10 @@
     ]
   },
   "devDependencies": {
-    "lint-staged": "^10.5.3"
+    "lint-staged": "^10.5.3",
+    "msw": "^0.32.0"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

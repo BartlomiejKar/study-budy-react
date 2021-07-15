@@ -1,5 +1,8 @@
 import React, { useState, createContext, useEffect } from 'react';
-import { users as usersData } from 'data/users';
+import axios from "axios"
+
+
+
 
 
 export const UsersProviders = createContext({
@@ -9,17 +12,23 @@ export const UsersProviders = createContext({
     deleteUser: () => { },
 })
 
+
+
 const ContextProviders = ({ children }) => {
-    const [users, setUser] = useState(usersData);
+    const [users, setUser] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
-
-
     useEffect(() => {
+        axios.get('/students')
+            .then(({ data }) => {
+                setUser(data.students)
+            })
+            .catch(err => console.log(err));
         setTimeout(() => {
-            setUser(usersData);
             setIsLoading(false);
         }, 2000);
-    }, []);
+    }, [])
+
+
     const deleteUser = (name) => {
         const newUserList = users.filter((elem) => elem.name !== name);
         setUser(newUserList);
