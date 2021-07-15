@@ -43,6 +43,9 @@ export const ArticleWrapper = styled.div`
   p {
     line-height: 1.6;
   }
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px
 `;
 export const ContentWrapper = styled.div`
   display: flex;
